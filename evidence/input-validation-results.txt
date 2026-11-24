@@ -1,0 +1,20 @@
+Normal input:
+  Length: 100
+  Accepted: True
+  Result: Token length accepted
+
+Empty input:
+  Length: 0
+  Accepted: False
+  Result: Empty token rejected
+
+Maximum boundary:
+  Length: 4096
+  Accepted: True
+  Result: Token length accepted
+
+Oversized input:
+  Length: 5000
+  Accepted: False
+  Result: Token exceeds maximum permitted length
+

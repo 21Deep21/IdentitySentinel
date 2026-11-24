@@ -1,0 +1,99 @@
+PROJECT 4 - JWT SECURITY INSPECTOR
+Test Date: Tuesday 24 November 2026 06:09:49 AM UTC
+Testing Environment: Fedora 44 / Python 3.14
+Synthetic JWTs only
+==================================
+
+TEST CASE: sample_data/expired_jwt.txt
+
+=== JWT SECURITY INSPECTION ===
+
+Header:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Claims:
+  iss: project4-local-lab
+  aud: project4-api
+  sub: dummy-user-001
+  iat: 1700000000
+  exp: 1700003600
+
+Security observations:
+  [WARNING] Token has expired
+
+IMPORTANT: Signature NOT verified.
+Decoded claims must NOT be trusted for authentication.
+
+TEST CASE: sample_data/missing_claims_jwt.txt
+
+=== JWT SECURITY INSPECTION ===
+
+Header:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Claims:
+  iss: MISSING
+  aud: MISSING
+  sub: dummy-user-002
+  iat: 1795500505
+  exp: MISSING
+
+Security observations:
+  [WARNING] Missing or empty claim: iss
+  [WARNING] Missing or empty claim: aud
+  [WARNING] Missing or empty claim: exp
+
+IMPORTANT: Signature NOT verified.
+Decoded claims must NOT be trusted for authentication.
+
+TEST CASE: sample_data/none_algorithm_jwt.txt
+
+=== JWT SECURITY INSPECTION ===
+
+Header:
+{
+  "alg": "none",
+  "typ": "JWT"
+}
+
+Claims:
+  iss: project4-local-lab
+  aud: project4-api
+  sub: dummy-user-003
+  iat: 1795500505
+  exp: 1795504105
+
+Security observations:
+  [WARNING] Unsafe algorithm declaration: none
+
+IMPORTANT: Signature NOT verified.
+Decoded claims must NOT be trusted for authentication.
+
+TEST CASE: sample_data/valid_claims_jwt.txt
+
+=== JWT SECURITY INSPECTION ===
+
+Header:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Claims:
+  iss: project4-local-lab
+  aud: project4-api
+  sub: dummy-user-001
+  iat: 1795500505
+  exp: 1795504105
+
+Security observations:
+  No issues detected by basic claim checks
+
+IMPORTANT: Signature NOT verified.
+Decoded claims must NOT be trusted for authentication.

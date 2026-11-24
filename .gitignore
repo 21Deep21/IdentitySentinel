@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+*.log
+*.session
+*.session.*
+evidence/webgoat-healthcheck.json
+evidence/webgoat-http-response.txt
